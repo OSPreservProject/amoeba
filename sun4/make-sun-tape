@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+#	If making a 150M (DC6150) tape then set DEV to rst0
+#	If making a QIC-24 tape then set DEV to rst8
+#
+#DEV=rst1
+#NDEV=nrst1
+DEV=rmt/0
+NDEV=rmt/0n
+if [ $# -ne 1 ]
+then
+	echo usage: $0 arch
+	echo where arch is sun4m of sun4c
+	exit 1
+fi
+case $1 in
+sun4c|sun4m) ;;
+*)
+	echo "Architecture $1 not supported.  Use sun4m or sun4c"
+	exit 1
+	;;
+esac
+
+mt -f /dev/$DEV rewind
+dd if=tapefile.0.$1 of=/dev/$NDEV bs=10k conv=sync
+dd if=tapefile.1 of=/dev/$NDEV bs=10k conv=sync
+dd if=tapefile.2 of=/dev/$DEV  bs=10k conv=sync
+mt -f /dev/$DEV offline

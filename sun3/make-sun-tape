@@ -1,0 +1,4 @@
+mt -f /dev/rst8 rewind
+dd if=tapefile.0 of=/dev/nrst8 bs=5120 conv=sync
+dd if=tapefile.1 of=/dev/nrst8 bs=5120 conv=sync
+dd if=tapefile.2 of=/dev/rst8 bs=5120 conv=sync

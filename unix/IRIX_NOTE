@@ -1,0 +1,7 @@
+Note that we no longer support the FLIP driver in Ultrix or Irix.
+It may well be possible to build it into these kernels but we
+do not have the resources to do it.  The notes in the manuals are
+from several versions ago for both Ultrix and Amoeba and may bear
+no relationship to current reality.
+
+We apologise for the inconvenience.
